@@ -1,0 +1,192 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 100px;
+}
+body{
+    font-size: 0.16rem;
+}
+/* 头部区域 */
+#header{
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    height: 0.5rem;
+    align-items: center;
+    padding: 0 0.15rem;
+}
+#header .data-watch button{
+    border-radius: 0.05rem;
+    font-size: 0.16rem;
+}
+#header .data-watch .layui-btn.layui-btn-warm.layui-btn-sm{
+    width: 1.5rem;
+}
+/* 筛选搜索区域 */
+#select{
+    height: 0.6rem;
+    display: flex;
+   align-items: center;
+   background-color: #fff;
+   border-top: 1px solid #ccc;
+}
+/* 表单 */
+#select .layui-form{
+    padding: 0 0.15rem;
+   
+}
+/* 表单项 */
+#select .layui-form .layui-form-item{
+    margin-bottom: 0;
+}
+/* 表单输入框 */
+#select .layui-form .layui-input{
+    border-radius: 0.05rem;
+}
+ /* 设置每项的外边距 */
+#select .layui-form .layui-inline{
+    margin-right: 0;
+    margin-bottom: 0;
+    
+}
+/* 最后一项宽度 */
+#select .layui-form .layui-inline:last-of-type .layui-input-inline{
+    width: 0.34rem;
+}
+/* 每项宽度*/
+#select .layui-form .layui-form-item .layui-input-inline{
+    margin-right: 5px;
+    width: 1.5rem;
+    font-size: 0.14rem
+}
+/* 按钮宽度 */
+#select .layui-form .layui-form-item .btn-kd{
+    padding: 0;
+    width: 0.34rem;
+}
+/* 时间段筛选 */
+#select .time-quantum{
+   
+   border: 1px solid #3691ff;
+   border-radius: 0.05rem;
+
+}
+/* 按钮组样式 */
+#select .time-quantum .layui-btn{
+    border: none; 
+}
+/* 按钮组第一个按钮 */
+#select .time-quantum .layui-btn:first-of-type{
+   border-top-left-radius: 0.05rem;
+   border-bottom-left-radius: 0.05rem;
+}
+/* 按钮组最后一个按钮 */
+#select .time-quantum .layui-btn:last-of-type{
+   border-top-right-radius: 0.05rem;
+   border-bottom-right-radius: 0.05rem;
+}
+/* 提示信息 */
+#select .tip{
+    font-size:0.12rem;
+    color: #a9a9a9;
+    margin-left: 0.15rem;
+}
+
+/* 图表 */
+#chart{
+  
+}
+/* 图表内容 */
+#chart .data-statistics .content{
+    background-color: #fff;
+    height: 2rem;
+    display: flex;
+    
+}
+/* 图表标题 */
+#chart .data-statistics .title,
+#chart .category-statistics .title{
+    font-size: 0.18rem;
+    background-color:#edf0f3;
+    padding: 0.15rem 0.3rem;
+    position: relative;
+}
+#chart .data-statistics .title::before,
+#chart .category-statistics .title::before{
+    content: '';
+    width: 0.03rem;
+    height: 0.25rem;
+    background-color:#44afff;
+    position: absolute;
+    top: 0.14rem;
+    left: 0.24rem;
+}
+/* 图表*/
+#chart .data-statistics .content .category-li{
+    flex: 1;
+    padding: 0.15rem 0 0 0.15rem;
+}
+#chart .data-statistics .content .category-li+.category-li{
+    border-left: 0.01rem solid #eeeeee;
+}
+/* 图表分类 */
+#chart .data-statistics .content .category-li .type{
+    font-size: 0.12rem;
+    color: #000;
+}
+#chart .data-statistics .content .category-li .num{
+    font-size: 0.24rem;
+    padding: 0.1rem 0;
+}
+#chart .data-statistics .content .category-li .broken-line{
+    width: 100%;
+    height: 1rem;
+}
+/*分类统计分类内容容器  */
+
+#chart .category-statistics .content {
+    padding-left: 0.15rem;
+    background-color: #fff;
+}
+/* 分类统计分类标签*/
+#chart .category-statistics .content .category-tab ul{
+    display: flex;
+}
+#chart .category-statistics .content .category-tab ul li{
+    margin-right: 0.3rem;
+}
+#chart .category-statistics .content .category-tab ul li i{
+    display: inline-block;
+    width: 0.15rem;
+    height: 0.15rem;
+    border-radius: 0.75rem;
+    background-color:#909090;
+}
+#chart .category-statistics .content .category-tab ul li:nth-of-type(1) i{
+    background-color:#3690ff;
+}
+#chart .category-statistics .content .category-tab ul li:nth-of-type(2) i{
+    background-color:#2bbdff;
+}
+#chart .category-statistics .content .category-tab ul li:nth-of-type(3) i{
+    background-color:#ffbf69;
+}
+#chart .category-statistics .content .category-tab ul li span{
+    font-size: 0.12rem;
+}
+/* 分类统计图表 */
+#chart .category-statistics .content .chart{
+    display: flex;
+}
+#chart .category-statistics .content .chart .broken-line-chart{
+    flex: 1;
+    height: 3rem;
+    overflow-x: auto;
+}
+#chart .category-statistics .content .chart .pie-chart{
+    width: 4rem;
+}

@@ -1,662 +1,525 @@
-
-
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>商品列表</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-  <link rel="stylesheet" href="../../layuiadmin/style/taskAnalysis/taskAnalysis.css" media="all">
-</head>
-<body>
- <!-- 头部 -->
- <header id="header">
-  <!-- 查询表单 -->
-  <div class="layui-form-item">
-    <div class="left">
-      <div class="layui-inline">
-        <div class="layui-input-inline">
-          <input
-            type="text"
-            name="title"
-            placeholder="请选择开始时间"
-            autocomplete="off"
-            class="layui-input"
-          />
-        </div>
-      </div>
-      <div class="layui-inline">
-        <div class="layui-input-inline">
-          <input
-            type="text"
-            name="title"
-            placeholder="请选择结束时间"
-            autocomplete="off"
-            class="layui-input"
-          />
-        </div>
-      </div>
-
-      <div class="layui-inline">
-        <button
-          class="layui-btn layuiadmin-btn-list layui-btn-normal"
-          lay-submit=""
-          lay-filter="search"
-          title="这是一个button"
-        >
-          <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+  <head>
+    <meta charset="utf-8" />
+    <title>数据分析</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link
+      rel="stylesheet"
+      href="../../layuiadmin/layui/css/layui.css?v={$version}"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="../../layuiadmin/style/admin.css?v={$version}"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="../../layuiadmin/style/dataAnalysis/dataAnalysis.css?v={$version}"
+      media="all"
+    />
+  </head>
+  <body>
+    <!--头部导航 -->
+    <div id="header">
+      <!-- 在线人数 -->
+      <div class="onlinenumber">在线人数: <span>1/3</span></div>
+      <!-- 大数据实时监控 -->
+      <div class="data-watch">
+        <button class="layui-btn layui-btn-warm layui-btn-sm">
+          大数据实时监控
         </button>
-      </div>
-      <div class="layui-inline">
-        <span class="select-tip">*最多可查询一个月的任务分析</span>
+        <button class="layui-btn layui-btn-normal layui-btn-sm">刷新</button>
       </div>
     </div>
-  </div>
-  <div class="right">
-    <button
-      class="layui-btn  layui-btn-normal"
-      lay-submit=""
-      lay-filter="refresh"
-    >
-      刷新
-    </button>
-  </div>
-</header>
-<!-- 主体部分 -->
-<main id="main">
-  <!-- 左侧进度状态 -->
-  <div class="left">
-    <ul>
-      <li class="active">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
+    <!-- 筛选查找 -->
+    <div id="select">
+      <!-- form表单 -->
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <!-- 子账号 -->
+          <div class="layui-inline">
+            <div class="layui-input-inline">
+              <select name="duration" lay-verify="">
+                <option value="">请选择子账号</option>
+                <option value="0">21327</option>
+                <option value="1">hlmn</option>
+              </select>
             </div>
           </div>
 
-          <span class="progress-text">进度1/1</span>
-        </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
-        </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-      <li class="">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
+          <!-- 话术模板 -->
+          <div class="layui-inline">
+            <div class="layui-input-inline">
+              <select name="Call-rounds" lay-verify="">
+                <option value="">请选择话术模板</option>
+                <option value="0">区块链钱包(讯呼制作中)</option>
+                <option value="1"
+                  >保险行业（回访）话术V2.0(TTS)-201（停用）</option
+                >
+                <option value="2">小贷行业（金融）V3.0（颠覆版）-203</option>
+                <option value="3">催收行业V1.0(全TTS)</option>
+                <option value="4">催收行业v2.0(全tts)</option>
+                <option value="5">地产行业（公寓）V2.2-苏1</option>
+                <option value="6">保险行业（回访）V2.1（固定tts）-201</option>
+                <option value="7">增值行业（宽带）V2.0-205</option>
+                <option value="8">招聘行业（邀约）V1.0-205</option>
+                <option value="9">地产行业(商铺)V2.0-205</option>
+                <option value="10">教育行业（补习班）V2.0-207</option>
+                <option value="11">(旧版停用)小程序行业（推广）V2.0-206</option>
+                <option value="12">地产行业(公寓)V3.0（颠覆版）-205</option>
+                <option value="13">小贷款行业话术V2.5(转人工（制作中</option>
+                <option value="14">装修行业模板V2.0-205（旧版</option>
+                <option value="15">机器人行业（直销）V2.5-201</option>
+                <option value="16">机器人行业（招商）V2.5-201</option>
+              </select>
             </div>
           </div>
 
-          <span class="progress-text">进度1/1</span>
-        </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
-        </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-      <li class="">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
+          <!-- 开始时间 -->
+          <div class="layui-inline">
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                name="title"
+                id="test-laydate-start"
+                placeholder="选择开始时间"
+                class="layui-input"
+              />
             </div>
           </div>
-
-          <span class="progress-text">进度1/1</span>
-        </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
-        </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-      <li class="">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
+          <!--结束时间 -->
+          <div class="layui-inline">
+            <div class="layui-input-inline">
+              <input
+                type="text"
+                name="title"
+                id="test-laydate-end"
+                placeholder="选择结束时间"
+                class="layui-input"
+              />
             </div>
           </div>
-
-          <span class="progress-text">进度1/1</span>
-        </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
-        </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-      <li class="">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
+          <!-- 搜索按钮 -->
+          <div class="layui-inline">
+            <div class="layui-input-inline">
+              <button
+                class="layui-btn layuiadmin-btn-list layui-btn-normal btn-kd"
+                lay-submit=""
+                lay-filter="search"
+                title="这是一个button"
+              >
+                <i
+                  class="layui-icon layui-icon-search layuiadmin-button-btn"
+                ></i>
+              </button>
             </div>
           </div>
-
-          <span class="progress-text">进度1/1</span>
         </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
+      </form>
+      <!-- 筛选某个时间段 -->
+      <div class="time-quantum">
+        <div class="layui-btn-group">
+          <button class="layui-btn  layui-btn-primary">今天</button>
+          <button class="layui-btn  layui-btn-primary">昨天</button>
+          <button class="layui-btn  layui-btn-primary">近七天</button>
+          <button class="layui-btn  layui-btn-primary">近30天</button>
         </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-      <li class="">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
-            </div>
+      </div>
+      <!-- 提示 -->
+      <div class="tip">*最多可查询一个月的呼出数据统计</div>
+    </div>
+    <!-- 图表 -->
+    <div id="chart">
+      <!-- 数据统计 -->
+      <div class="data-statistics">
+        <div class="title">数据统计</div>
+        <div class="content">
+          <!-- 已呼数 -->
+          <div class="category-li">
+            <div class="type">已呼数</div>
+            <div class="num"><span>10</span><sub>个</sub></div>
+            <div class="broken-line"></div>
           </div>
-
-          <span class="progress-text">进度1/1</span>
-        </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
-        </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-      <li class="">
-        <div class="title">
-          <span class="name">测试</span>
-          <span class="status">发送成功</span>
-        </div>
-        <div class="progress-bar">
-          <div class="bar">
-            <div class="layui-progress">
-              <div class="layui-progress-bar" lay-percent="100%"></div>
-            </div>
+          <!-- 接通数量-->
+          <div class="category-li">
+            <div class="type">已呼数</div>
+            <div class="num"><span>10</span><sub>个</sub></div>
+            <div class="broken-line"></div>
           </div>
-
-          <span class="progress-text">进度1/1</span>
-        </div>
-        <div class="start-time">
-          开始时间：<span>2018-12-28 15:40:00</span>
-        </div>
-        <div class="end-time">
-          结束时间：<span>2018-12-28 16:00:00</span>
-        </div>
-        <div class="creator">创建人：<span>hln</span></div>
-      </li>
-    </ul>
-  </div>
-  <!-- 右侧-->
-  <div class="right">
-    <!-- 呼叫相关分析数据 -->
-    <div class="call-data">
-      <!-- 呼叫信息 -->
-      <div class="top">
-        <div class="call-info">
-          <ul>
-            <li>
-              <span>已呼数：</span>
-              <div><strong>1</strong><sub>个</sub></div>
-            </li>
-            <li>
-              <span>未呼数：</span>
-              <div><strong>0</strong><sub>个</sub></div>
-            </li>
-            <li>
-              <span>接通数：</span>
-              <div><strong>1</strong><sub>个</sub></div>
-            </li>
-            <li>
-              <span>接通率：</span>
-              <div><strong>100</strong><sub>%</sub></div>
-            </li>
-            <li>
-              <span>通话时常：</span>
-              <div><strong>45</strong><sub>秒</sub></div>
-            </li>
-            <li>
-              <span>平均通话时长：</span>
-              <div><strong>45</strong><sub>秒</sub></div>
-            </li>
-            <li>
-              <span>A/B/C类客户：</span>
-              <div><strong>1</strong><sub>个</sub></div>
-            </li>
-            <li>
-              <span>意向客户比例：</span>
-              <div><strong>100</strong><sub>%</sub></div>
-            </li>
-            <li>
-              <span>转人工坐席次数：</span>
-              <div><strong>0</strong><sub>次</sub></div>
-            </li>
-          </ul>
+          <!-- 接通率 -->
+          <div class="category-li">
+            <div class="type">接通数</div>
+            <div class="num"><span>10</span><sub>个</sub></div>
+            <div class="broken-line"></div>
+          </div>
+          <!-- 总通话时长 -->
+          <div class="category-li">
+            <div class="type">已呼数</div>
+            <div class="num"><span>10</span><sub>个</sub></div>
+            <div class="broken-line"></div>
+          </div>
+          <!-- 平均通话时长 -->
+          <div class="category-li">
+            <div class="type">已呼数</div>
+            <div class="num"><span>10</span><sub>个</sub></div>
+            <div class="broken-line"></div>
+          </div>
+          <!-- A/B/C客户分类 -->
+          <div class="category-li">
+            <div class="type">已呼数</div>
+            <div class="num"><span>10</span><sub>个</sub></div>
+            <div class="broken-line"></div>
+          </div>
+          <!-- 意向客户比例 -->
+          <div class="category-li">
+            <div class="type">已呼数</div>
+            <div class="num"><span>10</span>个</div>
+            <div class="broken-line"></div>
+          </div>
         </div>
       </div>
       <!-- 分类统计 -->
-      <div class="category">
-        <div class="left"><div id="histogram"></div></div>
-        <div class="right"><div id="doughnut-chart"></div></div>
-      </div>
-      <!-- 话术跳出率 与单次通话分析 -->
-      <div class="call-analyze">
-        <!-- 话术跳出率 -->
-        <div class="verbal-trick-frequency">
-          <div class="title">
-            <span>话术跳出率</span>
-            <i class="layui-icon layui-icon-help"></i>
-            <form class="layui-form" action="">
-              <div class="layui-form-item">
-                <div class="layui-input-block">
-                  <select name="city" lay-verify="required">
-                    <option value="">请选择任务</option>
-                    <option value="0">1询问利息</option>
-                    <option value="1">2告知还款</option>
-                  
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div class="category-statistics">
+          <div class="title">分类统计</div>
           <div class="content">
-              <table class="layui-table">
-                  <colgroup>
-                    <col width="150">
-                    <col width="200">
-                    <col>
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th>主干流程</th>
-                      <th>跳出数</th>
-                      <th>跳出率</th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2告知还款</td>
-                      <td>1</td>
-                      <td>100%</td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
-          </div>
-        </div>
+            <!-- 分类标签 -->
+              <!-- <div class="category-tab">
+                  <ul>
+                    <li>
+                      <i></i>
+                      <span>A类</span>
+                    </li>
+                    <li>
+                      <i></i> 
+                      <span>B类</span>
+                    </li>
+                    <li>
+                      <i></i>
+                      <span>C类</span>
+                    </li>
+                    <li>
+                      <i></i>
+                      <span>D类</span>
+                    </li>
+                    <li>
+                      <i></i>
+                      <span>E类</span>
+                    </li>
+                    <li>
+                      <i></i>
+                      <span>F类</span>
+                    </li>
+                  </ul>
+              </div> -->
+              <div class="chart">
+                     <!-- 分类图表折线图 -->
+                  <div class="broken-line-chart">
 
-        <!-- 单次通话分析 -->
-        <div class="one-call-analyze">
-          <!-- 通话时长 -->
-          <div class="call-time">
-            <div class="title">通话时长</div>
-            <ul class="content">
-              <li>
-                <span class="type">小于10秒</span>
-                <div class="layui-progress">
-                    <div class="layui-progress-bar" lay-percent="100%"></div>
-                </div>
-                <span class="ratio">100%</span>
-                <div class="num">(<span>1</span>)</div>
-              </li>
-              <li>
-                <span class="type">10秒-59秒</span>
-                <div class="layui-progress">
-                    <div class="layui-progress-bar" lay-percent="0%"></div>
-                </div>
-                <span class="ratio">0%</span>
-                <div class="num">(<span>0</span>)</div>
-              </li>
-              <li>
-                <span class="type">1分钟-1分59秒</span>
-                <div class="layui-progress">
-                    <div class="layui-progress-bar" lay-percent="0%"></div>
-                </div>
-                <span class="ratio">0%</span>
-                <div class="num">(<span>0</span>)</div>
-              </li>
-              <li>
-                <span class="type">大于等于2分钟</span>
-                <div class="layui-progress">
-                    <div class="layui-progress-bar" lay-percent="0%"></div>
-                </div>
-                <span class="ratio">0%</span>
-                <div class="num">(<span>0</span>)</div>
-              </li>
-            </ul>
+                  </div>
+                      <!-- 环状图 -->
+                  <div class="pie-chart"></div>    
+              </div>
+              
           </div>
-          <!-- 对话轮数 -->
-          <div class="call-num">
-              <div class="title">对话轮次</div>
-              <ul class="content">
-                  <li>
-                    <span class="type">0-2次</span>
-                    <div class="layui-progress">
-                        <div class="layui-progress-bar layui-bg-red" lay-percent="100%"></div>
-                    </div>
-                    <span class="ratio">100%</span>
-                    <div class="num">(<span>1</span>)</div>
-                  </li>
-                  <li>
-                    <span class="type">3-4次</span>
-                    <div class="layui-progress">
-                        <div class="layui-progress-bar" lay-percent="0%"></div>
-                    </div>
-                    <span class="ratio">0%</span>
-                    <div class="num">(<span>0</span>)</div>
-                  </li>
-                  <li>
-                    <span class="type">5-6次</span>
-                    <div class="layui-progress">
-                        <div class="layui-progress-bar" lay-percent="0%"></div>
-                    </div>
-                    <span class="ratio">0%</span>
-                    <div class="num">(<span>0</span>)</div>
-                  </li>
-                  <li>
-                    <span class="type">7-9次</span>
-                    <div class="layui-progress">
-                        <div class="layui-progress-bar" lay-percent="0%"></div>
-                    </div>
-                    <span class="ratio">0%</span>
-                    <div class="num">(<span>0</span>)</div>
-                  </li>
-                  <li>
-                    <span class="type">10次级以上</span>
-                    <div class="layui-progress">
-                        <div class="layui-progress-bar" lay-percent="0%"></div>
-                    </div>
-                    <span class="ratio">0%</span>
-                    <div class="num">(<span>0</span>)</div>
-                  </li>
-                </ul>
-          </div>
-        </div>
-      </div>
-      <!-- 询问热词 -->
-      <div class="hotWord">
-        <div class="title">热点问题</div>
-          <ul  class="hotWord-list">
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-            <li>
-              <div class="keyWord">
-                <span>1、</span><span class="text">银行卡丢了</span>
-              </div>
-              <div class="ask-num">29人提问</div>
-            </li>
-          </ul>
-       
+      
       </div>
     </div>
-  </div>
-</main>
+    <script src="../../layuiadmin/layui/layui.js?v={version}"></script>
+    <script>
+      layui
+        .config({
+          base: '../../layuiadmin/' //静态资源所在路径
+          // ,version:{$version}
+        })
+        .extend({
+          index: 'lib/index' //主入口模块
+        })
+        .use(
+          ['index', 'layer', 'echarts', 'element', 'form', 'rem', 'laydate'],
+          function() {
+            var laypage = layui.laypage,
+              layer = layui.layer,
+              echarts = layui.echarts,
+              element = layui.element,
+              carousel = layui.carousel,
+              $ = layui.jquery,
+              form = layui.form,
+              laydate = layui.laydate
 
-  <script src="../../layuiadmin/layui/layui.js"></script>  
-  <script>
-  layui.config({
-    base: '../../layuiadmin/' //静态资源所在路径
-  }).extend({
-    index: 'lib/index' //主入口模块
-  }).use(['index', 'layer','echarts','element','form'], function(){
-  var laypage = layui.laypage
-  ,layer = layui.layer
-  ,echarts=layui.echarts
-  ,element=layui.element
-  ,carousel=layui.carousel
-  ,$=layui.jquery
-  ,form=layui.form;
-  
-  // 柱状图
-      var echnormcol = [], normcol = [
-      
-      {
-        title: {
-          text: '分类统计'
-        },
-        legend: {
-          //lengend 属性中必须要有data属性，否则报错
-          data:['']
-        },
-        tooltip: {},
-        // 颜色
-        color: [
-          '#3690ff',
-          '#2bbdff',
-          '#ffbf69',
-          '#ff7d7d',
-          '#a1eb3e',
-          '#dcdcdc'
-        ],
-        xAxis: {
-          data: ['A类', 'B类', 'C类', 'D类', 'E类', 'F类']
-        },
-        yAxis: {
-          minInterval: 10
-        },
-        // 表格与div之间的留白间距
-        grid: {
-          x: 20,
-          y: 45,
-          x2: 0,
-          y2: 20
-        },
-        series: [
-          {
-            type: 'bar',
-            data: [10, 20, 15, 30, 12, 7],
-            barWidth: 20, // 柱形的宽度
-            barCategoryGap: '20%', // 柱形的间距
-            itemStyle: {
-              // 图形的形状
-              normal: {
-                //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
-                color: function(params) {
-                  var colorList = [
-                    'rgb(54, 144, 255)',
-                    'rgb(43, 189, 255)',
-                    'rgb(255, 191, 105)',
-                    'rgb(255, 125, 125)',
-                    'rgb(161, 235, 62)',
-                    'rgb(220, 220, 220)'
-                  ]
-                  return colorList[params.dataIndex]
-                }
+            //开始日期
+            var insStart = laydate.render({
+              elem: '#test-laydate-start',
+              min: -180,
+              type: 'datetime',
+              done: function(value, date) {
+                //更新结束日期的最小日期
+                insEnd.config.min = lay.extend({}, date, {
+                  month: date.month - 1
+                })
+
+                //自动弹出结束日期的选择器
+                insEnd.config.elem[0].focus()
               }
+            })
+
+            //结束日期
+            var insEnd = laydate.render({
+              elem: '#test-laydate-end',
+              min: 0,
+              type: 'datetime',
+              done: function(value, date) {
+                //更新开始日期的最大日期
+                insStart.config.max = lay.extend({}, date, {
+                  month: date.month - 1
+                })
+              }
+            })
+
+            // 折线图数据统计 无 X Y轴，无网格
+            function echart(option) {
+              
+              var echheapline = [],
+                heapline = [
+                  {
+                    color: option.color,
+
+                    calculable: true,
+                    tooltip: {
+                      trigger: 'axis'
+                    },
+                    grid: {
+                      borderColor: '#fff',
+                      x: 0,
+                      x2: 20,
+                      y: 0,
+                      y2: 10
+                    },
+                    legend: {
+                      data: []
+                    },
+
+                    xAxis: [
+                      {
+                        type: 'category',
+                        boundaryGap: false,
+                        show: false,
+                        data: option.time
+                      }
+                    ],
+                    yAxis: [
+                      {
+                        show: false,
+                        type: 'value'
+                      }
+                    ],
+                    series: [
+                      {
+                        name: option.title,
+                        type: 'line',
+                        
+                        data: option.data,
+                        symbol: 'none', //这句就是去掉点的
+                        smooth: true //这句就是让曲线变平滑的
+                      }
+                    ]
+                  }
+                ],
+                elemheapline = option.element,
+                renderheapline = function(index) {
+                  echheapline[index] = echarts.init(
+                    elemheapline[index],
+                    layui.echartsTheme
+                  )
+                  echheapline[index].setOption(heapline[index])
+                  window.onresize = echheapline[index].resize
+                }
+              if (!elemheapline[0]) return
+              renderheapline(0)
             }
+            var option = {}
+            option.element = $('#call-num')
+            option.title = '已呼数'
+            option.time = [
+              '1-2',
+              '1-3',
+              '1-4',
+              '1-5',
+              '1-6',
+              '1-7',
+              '1-8',
+              '1-9'
+            ]
+            option.value = '10个'
+            option.color = ['#706bff', '#5283ff']
+            option.data = [0, 0, 0, 0, 12, 0, 0, 0, 0]
+            $('#chart .content .broken-line').each(function(index, ele) {
+              option.element = $(ele)
+              echart(option)
+            })
+            // 折线图 带有x、y轴 堆积折线图，多波段折线
+              //堆积折线图
+    var echheapline = [], heapline = [
+      {
+        backgroundColor: '#fff',
+        tooltip:{
+          trigger:'axis'
+        },
+       
+    legend: {
+        data:['A类', 'B类','C类','D类','E类','F类',],
+        inactiveColor: '#999',
+        x:'left',
+        selected: {
+					'D类': false,
+					'E类': false,
+					'F类': false,
+				
+				}
+
+    },
+    // calculable:true,//计算趋势
+    xAxis: [
+   
+         {
+         
+          axisLabel:{
+            rotate:30,
+            interval:0
+          },
+          splitLine: {
+            show: true,
+            lineStyle:{
+                 color: ['#fbfbfb'],
+                 width: 1,
+                type: 'solid'
+            }
+        },
+
+            type:'category',
+            // boundaryGap: false,//折线图x轴0刻度开始
+            data: [
+              "12-3","12-4","12-6","12-7","12-7","12-8","12-9","12-10","12-11","12-12","12-13","12-14","12-15","12-16","12-17","12-18","12-19","12-20","12-21","12-22","12-23",
+              "12-24","12-25","12-26","12-27","12-28","12-29","12-30","12-31","1-1","1-2","1-3","1-4"],
+            axisLine:{
+              lineStyle:{
+            color:"#000"//设置x颜色
+          },
+        
+        }
+        },
+           
+    ],
+    grid:{
+      x:30,
+      y:60,
+      y2:50,
+      x2:-50
+    },
+    yAxis: [
+        {
+          backgroundColor: '#fff',
+          splitLine: {
+            show: true,
+            lineStyle:{
+                 color: ['#ccc'],
+                 width: 1,
+                type: 'solid'
+            }
+        },
+            type: 'value',
+            min:0, // 设置y轴刻度的最小值
+            // 设置y轴刻度的最大值
+            splitNumber:4,  // 设置y轴刻度间隔个数
+            axisLine:{
+          lineStyle:{ 
+            color:"#000"//设置y轴颜色
           }
-        ]
+        }
+        }
+    ],
+    series: [
+        {
+          // symbolSize:10,
+          //   // 设置拐点为实心圆
+          //   symbol:'circle',    
+            name:'A类',
+            type:'line',
+          // symbol:'none',
+          smooth:0.3,
+            data: [2.6, 5.9, 9.0, 26.4, 28.7,12,12,2,3,44,1]
+        },
+        {
+          // symbolSize:10,
+          //   // 设置拐点为实心圆
+          //   symbol:'circle',    
+            name:'B类',
+            type:'line',
+          // symbol:'none',
+          smooth:0.3,
+            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6]
+        },
+        {
+          // symbolSize:10,
+          //   // 设置拐点为实心圆
+          //   symbol:'circle',    
+            name:'C类',
+            type:'line',
+          // symbol:'none',
+          smooth:0.3,
+            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6]
+        },
+        {
+          // symbolSize:10,
+          //   // 设置拐点为实心圆
+          //   symbol:'circle',    
+            name:'D类',
+            type:'line',
+          // symbol:'none',
+          smooth:0.3,
+            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6]
+        },
+        {
+          // symbolSize:10,
+          //   // 设置拐点为实心圆
+          //   symbol:'circle',    
+            name:'E类',
+            type:'line',
+          // symbol:'none',
+          smooth:0.3,
+            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6]
+        },
+        {
+          // symbolSize:10,
+          //   // 设置拐点为实心圆
+          //   symbol:'circle',    
+            name:'F类',
+            type:'line',
+          // symbol:'none',
+          smooth:0.3,
+            data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6]
+        }
+    ]
       }
     ]
-    
-    ,  elemNormcol = $('#histogram')//需要关联的图标容器
-    // 以下写法固定，对应填写对应的配置变量即可
-     ,renderNormcol = function(index){
-      //echnormcol：前面定义的空数组变量                   //elemNormcol：对应的关联的容器变量 
-      echnormcol[index] = echarts.init(elemNormcol[index], layui.echartsTheme);
-                                  //normcol：对应前面定义的配置变量 该变量是一个数组，数组是图表的所有配置
-      echnormcol[index].setOption(normcol[index]);
-      window.onresize = echnormcol[index].resize;
-    };   
-    if(!elemNormcol[0]) return;
-    renderNormcol(0);
-     
-
-      // 饼状图
-      var option2 =[],optionlist=[ {
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b}: {c} ({d}%)'
-        },
-        legend: {
-          orient: 'vertical',
-          x: 'left',
-          y: 'center',
-          data: ['A类', 'B类', 'C类', 'D类', 'E类', 'F类']
-        },
-        color: [
-          '#3690ff',
-          '#2bbdff',
-          '#ffbf69',
-          '#ff7d7d',
-          '#a1eb3e',
-          '#dcdcdc'
-        ],
-        series: [
-          {
-            name: '访问来源',
-            type: 'pie',
-            radius: ['50%', '70%'],
-            avoidLabelOverlap: false,
-            label: {
-              normal: {
-                show: false,
-                position: 'center'
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  fontSize: '30',
-                  fontWeight: 'bold'
-                }
-              }
-            },
-            labelLine: {
-              normal: {
-                show: false
-              }
-            },
-            data: [
-              { value: 122, name: 'A类' },
-              { value: 33, name: 'B类' },
-              { value: 33, name: 'C类' },
-              { value: 555, name: 'D类' },
-              { value: 555, name: 'E类' },
-              { value: 488, name: 'F类' }
-            ]
+    ,elemheapline = $('#chart .chart .broken-line-chart')
+    ,renderheapline = function(index){
+      echheapline[index] = echarts.init(elemheapline[index], layui.echartsTheme);
+      echheapline[index].setOption(heapline[index]);
+      window.onresize = echheapline[index].resize;
+    };
+    if(!elemheapline[0]) return;
+    renderheapline(0);
           }
-        ]
-      }]
-     ,  elemNormcolt = $('#doughnut-chart')
-     ,renderNorm = function(index){
-      option2[index] = echarts.init(elemNormcolt[index], layui.echartsTheme);
-      option2[index].setOption(optionlist[index]);
-      window.onresize = option2[index].resize;
-    };   
-    if(!elemNormcolt[0]) return;
-    renderNorm(0);
-      
-});
-  </script>
-</body>
+        )
+
+       
+    </script>
+  </body>
 </html>
